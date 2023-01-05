@@ -15,3 +15,4 @@
 .serverless
 
 !/gradle/wrapper/gradle-wrapper.jar
+/.idea
