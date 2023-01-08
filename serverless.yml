@@ -22,5 +22,5 @@ functions:
     handler: com.serverless.Handler
     events:
       - httpApi:
-          path: /users/create
-          method: get
+          path: /sync
+          method: post
