@@ -1,4 +1,4 @@
-package com.serverless;
+package com.shoppingbot.api;
 
 import java.util.Map;
 

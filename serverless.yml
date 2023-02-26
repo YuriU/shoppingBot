@@ -12,14 +12,16 @@ provider:
   runtime: java8
   stage: dev
   profile: home
+  environment:
+    TELEGRAM_BOT_KEY: MyKey
 
 
 package:
-  artifact: build/distributions/hello.zip
+  artifact: build/distributions/shoppingBot.zip
 
 functions:
   hello:
-    handler: com.serverless.Handler
+    handler:  com.shoppingbot.api.SyncHandler
     events:
       - httpApi:
           path: /sync

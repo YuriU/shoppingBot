@@ -1,4 +1,4 @@
-package com.serverless;
+package com.shoppingbot.bot;
 
 import org.apache.log4j.Logger;
 import org.telegram.telegrambots.bots.TelegramWebhookBot;
@@ -38,7 +38,7 @@ public class ShoppingBot extends TelegramWebhookBot {
     public BotApiMethod<?> onWebhookUpdateReceived(Update update) {
         LOG.info("Update received");
         try {
-            execute(SendMessage
+               execute(SendMessage
                     .builder()
                     .chatId(update.getMessage().getChatId())
                     .text("Putin Huilo!")

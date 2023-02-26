@@ -1,4 +1,4 @@
-package com.serverless;
+package com.shoppingbot.api;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
@@ -9,16 +9,11 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import java.util.Collections;
 import java.util.Map;
 
-public class Handler implements RequestHandler<Map<String, Object>, ApiGatewayResponse> {
-	private static final Logger LOG = Logger.getLogger(Handler.class);
-
+public class SyncHandler
+		extends BotHandler
+		implements RequestHandler<Map<String, Object>, ApiGatewayResponse> {
+	private static final Logger LOG = Logger.getLogger(SyncHandler.class);
 	private static final ObjectMapper MAPPER = new ObjectMapper();
-
-	private static final ShoppingBot BOT = new ShoppingBot(
-			"<TOKEN>",
-			"Bot",
-			"Path"
-	);
 
 	@Override
 	public ApiGatewayResponse handleRequest(Map<String, Object> input, Context context) {
@@ -27,7 +22,7 @@ public class Handler implements RequestHandler<Map<String, Object>, ApiGatewayRe
 			LOG.info("received: " + input.get("body"));
 			try {
 				Update update = MAPPER.readValue((String) input.get("body"), org.telegram.telegrambots.meta.api.objects.Update.class);
-				BOT.onWebhookUpdateReceived(update);
+				getBot().onWebhookUpdateReceived(update);
 			} catch (com.fasterxml.jackson.core.JsonProcessingException e) {
 				throw new RuntimeException(e);
 			}
