@@ -37,16 +37,20 @@ public class ShoppingBot extends TelegramWebhookBot {
     @Override
     public BotApiMethod<?> onWebhookUpdateReceived(Update update) {
         LOG.info("Update received");
+        sendMessage(update.getMessage().getChatId(), "Putin Huilo!");
+        return null;
+    }
+
+    public void sendMessage(Long chatId, String text) {
         try {
-               execute(SendMessage
+            execute(SendMessage
                     .builder()
-                    .chatId(update.getMessage().getChatId())
-                    .text("Putin Huilo!")
+                    .chatId(chatId)
+                    .text(text)
                     .build());
 
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);
         }
-        return null;
     }
 }

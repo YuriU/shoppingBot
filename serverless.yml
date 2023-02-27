@@ -14,15 +14,24 @@ provider:
   profile: home
   environment:
     TELEGRAM_BOT_KEY: MyKey
+    SEND_MESSAGE_PASSWORD: MyPassword
 
 
 package:
   artifact: build/distributions/shoppingBot.zip
 
 functions:
-  hello:
+  sync:
     handler:  com.shoppingbot.api.SyncHandler
     events:
       - httpApi:
           path: /sync
           method: post
+
+  sendMessage:
+    handler: com.shoppingbot.api.SendMessageHandler
+    events:
+      - httpApi:
+          path: /sendMessage
+          method: post
+
